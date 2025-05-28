@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Blockchain Technology</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .quiz-section {
+            margin-top: 30px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Introduction to Blockchain Technology</h1>
+
+    <h2>What is Blockchain?</h2>
+    <p>Blockchain is a distributed ledger technology that enables secure, transparent, and tamper-proof record-keeping without requiring a central authority. It stores data in "blocks" that are linked together in a chain, creating an immutable history of transactions.</p>
+
+    <h2>Key Components of Blockchain</h2>
+
+    <h3>1. Blocks</h3>
+    <ul>
+        <li>Contains a list of transactions</li>
+        <li>Includes a timestamp</li>
+        <li>Contains a reference (hash) to the previous block</li>
+        <li>Has its own unique hash</li>
+    </ul>
+
+    <h3>2. Distributed Network</h3>
+    <ul>
+        <li>Multiple copies of the blockchain exist across a network of computers (nodes)</li>
+        <li>Each node has the same copy of the blockchain</li>
+        <li>No central point of failure</li>
+    </ul>
+
+    <h3>3. Consensus Mechanisms</h3>
+    <ul>
+        <li><strong>Proof of Work (PoW)</strong>: Miners solve complex mathematical puzzles</li>
+        <li><strong>Proof of Stake (PoS)</strong>: Validators are selected based on their cryptocurrency holdings</li>
+        <li><strong>Delegated Proof of Stake (DPoS)</strong>: Token holders vote for a small number of delegates</li>
+    </ul>
+
+    <h2>How Blockchain Works</h2>
+    <ol>
+        <li>A transaction is requested</li>
+        <li>The transaction is broadcast to a peer-to-peer network</li>
+        <li>The network validates the transaction using agreed-upon algorithms</li>
+        <li>Once verified, the transaction is combined with others to form a block</li>
+        <li>The new block is added to the existing blockchain (immutable and transparent)</li>
+        <li>The transaction is complete</li>
+    </ol>
+
+    <h2>Applications of Blockchain</h2>
+
+    <h3>Cryptocurrencies</h3>
+    <ul>
+        <li>Bitcoin, Ethereum, and thousands of other digital currencies</li>
+        <li>Enables peer-to-peer financial transactions without intermediaries</li>
+    </ul>
+
+    <h3>Smart Contracts</h3>
+    <ul>
+        <li>Self-executing contracts with terms written in code</li>
+        <li>Automatically execute when predefined conditions are met</li>
+        <li>Eliminate the need for intermediaries</li>
+    </ul>
+
+    <h3>Supply Chain Management</h3>
+    <ul>
+        <li>Track products from origin to consumer</li>
+        <li>Verify authenticity and reduce counterfeiting</li>
+        <li>Improve transparency and efficiency</li>
+    </ul>
+
+    <h3>Healthcare</h3>
+    <ul>
+        <li>Secure patient data sharing</li>
+        <li>Medical record management</li>
+        <li>Drug traceability and authenticity</li>
+    </ul>
+
+    <h2>Advantages of Blockchain</h2>
+    <ul>
+        <li><strong>Decentralization</strong>: No single point of control or failure</li>
+        <li><strong>Transparency</strong>: All transactions are visible to network participants</li>
+        <li><strong>Immutability</strong>: Once recorded, data cannot be altered</li>
+        <li><strong>Security</strong>: Cryptography ensures data integrity</li>
+        <li><strong>Efficiency</strong>: Reduces the need for intermediaries</li>
+    </ul>
+
+    <h2>Challenges and Limitations</h2>
+    <ul>
+        <li><strong>Scalability</strong>: Limited transaction processing capacity</li>
+        <li><strong>Energy Consumption</strong>: PoW consensus mechanism requires significant energy</li>
+        <li><strong>Regulatory Uncertainty</strong>: Evolving legal frameworks across jurisdictions</li>
+        <li><strong>Interoperability</strong>: Challenges in communication between different blockchain networks</li>
+    </ul>
+
+    <div class="quiz-section">
+        <h2>Interactive Quiz</h2>
+        <p>Test your knowledge of blockchain technology by answering the following questions:</p>
+
+        <div class="quiz-question">
+            <p>1. What is one of the key advantages of blockchain listed in the document?</p>
+            <input type="text" id="q1" placeholder="Your answer here...">
+            <button onclick="checkAnswer('q1', ['decentralization', 'transparency', 'immutability', 'security', 'efficiency'])">Check</button>
+            <div id="q1-result" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <p>2. Which consensus mechanism involves miners solving complex mathematical puzzles?</p>
+            <input type="text" id="q2" placeholder="Your answer here...">
+            <button onclick="checkAnswer('q2', ['proof of work', 'pow'])">Check</button>
+            <div id="q2-result" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <p>3. According to the document, what do blocks in a blockchain contain?</p>
+            <input type="text" id="q3" placeholder="Your answer here...">
+            <button onclick="checkAnswer('q3', ['transactions', 'list of transactions', 'timestamp', 'hash', 'reference to previous block'])">Check</button>
+            <div id="q3-result" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <p>4. What blockchain application is described as "Self-executing contracts with terms written in code"?</p>
+            <input type="text" id="q4" placeholder="Your answer here...">
+            <button onclick="checkAnswer('q4', ['smart contracts', 'smart contract'])">Check</button>
+            <div id="q4-result" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <p>5. According to the document, what does "Immutability" mean in the context of blockchain?</p>
+            <input type="text" id="q5" placeholder="Your answer here...">
+            <button onclick="checkAnswer('q5', ['once recorded data cannot be altered', 'data cannot be altered', 'cannot be altered'])">Check</button>
+            <div id="q5-result" class="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(questionId, correctAnswers) {
+            const userAnswer = document.getElementById(questionId).value.toLowerCase().trim();
+            const resultDiv = document.getElementById(questionId + '-result');
+            
+            let isCorrect = false;
+            for (let answer of correctAnswers) {
+                if (userAnswer.includes(answer)) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = "✓ Correct!";
+                resultDiv.className = "feedback correct";
+            } else {
+                resultDiv.innerHTML = "✗ Incorrect. Try again.";
+                resultDiv.className = "feedback incorrect";
+            }
+        }
+    </script>
+</body>
+</html> 

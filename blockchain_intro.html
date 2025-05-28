@@ -4,182 +4,739 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Blockchain Technology</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary-color: #0ea5e9;
+            --accent-color: #10b981;
+            --danger-color: #ef4444;
+            --dark-bg: #1e293b;
+            --medium-bg: #334155;
+            --light-bg: #f1f5f9;
+            --text-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 50px;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+        
+        header {
+            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        ul {
-            padding-left: 20px;
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,213.3C672,203,768,149,864,144C960,139,1056,181,1152,176C1248,171,1344,117,1392,90.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0.2;
         }
-        .quiz-section {
-            margin-top: 30px;
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 5px;
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+            position: relative;
         }
-        .quiz-question {
+        
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .blockchain-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .blockchain-icon i {
+            font-size: 40px;
+            color: white;
+        }
+        
+        .main-content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title i {
+            font-size: 28px;
+            margin-right: 16px;
+            color: var(--primary-color);
+            background-color: var(--primary-light);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        
+        h2 {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h3 {
+            color: var(--text-dark);
+            margin: 25px 0 15px;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
             margin-bottom: 20px;
         }
+        
+        li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+        
+        .feature-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-bg);
+            height: 100%;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--primary-light);
+        }
+        
+        .feature-box h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-box h3 i {
+            margin-right: 12px;
+            color: var(--primary-color);
+        }
+        
+        .feature-box ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .feature-box li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+            top: -2px;
+        }
+        
+        .feature-box li strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+            margin-top: 30px;
+        }
+        
+        .process-steps li {
+            position: relative;
+            padding-left: 70px;
+            padding-bottom: 30px;
+            border-left: 2px dashed var(--primary-light);
+            margin-left: 20px;
+        }
+        
+        .process-steps li:last-child {
+            padding-bottom: 10px;
+            border-left: none;
+        }
+        
+        .process-steps li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: -20px;
+            top: -5px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .advantage-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .advantage-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .advantage-card h4 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .advantage-card p {
+            margin-bottom: 0;
+        }
+        
+        .challenges {
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .challenges h3 {
+            margin-top: 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenges h3 i {
+            margin-right: 12px;
+            color: var(--danger-color);
+        }
+        
+        .challenges ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .challenges li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .challenges li::before {
+            content: "×";
+            position: absolute;
+            left: 0;
+            color: var(--danger-color);
+            font-weight: bold;
+            font-size: 20px;
+            top: -4px;
+        }
+        
+        .challenges li strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .quiz-section {
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-top: 60px;
+            box-shadow: var(--box-shadow);
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .quiz-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-heading h2 {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .quiz-heading h2 i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 28px;
+        }
+        
+        .quiz-question {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-question:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .quiz-question p {
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        .quiz-question span.question-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+        
         input[type="text"] {
             width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            box-sizing: border-box;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
         }
+        
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
         button {
-            background-color: #3498db;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            padding: 12px 25px;
+            border-radius: 30px;
             cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
         }
+        
+        button i {
+            margin-right: 8px;
+        }
+        
         button:hover {
-            background-color: #2980b9;
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
         }
+        
         .feedback {
-            margin-top: 10px;
-            font-weight: bold;
+            margin-top: 15px;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            display: none;
         }
+        
         .correct {
-            color: green;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #047857;
+            border-left: 4px solid #047857;
         }
+        
         .incorrect {
-            color: red;
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #b91c1c;
+            border-left: 4px solid #b91c1c;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+        
+        footer p {
+            color: var(--text-light);
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            background-color: var(--medium-bg);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .feature-box, .advantage-card {
+                padding: 20px;
+            }
+            
+            .quiz-section {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Introduction to Blockchain Technology</h1>
-
-    <h2>What is Blockchain?</h2>
-    <p>Blockchain is a distributed ledger technology that enables secure, transparent, and tamper-proof record-keeping without requiring a central authority. It stores data in "blocks" that are linked together in a chain, creating an immutable history of transactions.</p>
-
-    <h2>Key Components of Blockchain</h2>
-
-    <h3>1. Blocks</h3>
-    <ul>
-        <li>Contains a list of transactions</li>
-        <li>Includes a timestamp</li>
-        <li>Contains a reference (hash) to the previous block</li>
-        <li>Has its own unique hash</li>
-    </ul>
-
-    <h3>2. Distributed Network</h3>
-    <ul>
-        <li>Multiple copies of the blockchain exist across a network of computers (nodes)</li>
-        <li>Each node has the same copy of the blockchain</li>
-        <li>No central point of failure</li>
-    </ul>
-
-    <h3>3. Consensus Mechanisms</h3>
-    <ul>
-        <li><strong>Proof of Work (PoW)</strong>: Miners solve complex mathematical puzzles</li>
-        <li><strong>Proof of Stake (PoS)</strong>: Validators are selected based on their cryptocurrency holdings</li>
-        <li><strong>Delegated Proof of Stake (DPoS)</strong>: Token holders vote for a small number of delegates</li>
-    </ul>
-
-    <h2>How Blockchain Works</h2>
-    <ol>
-        <li>A transaction is requested</li>
-        <li>The transaction is broadcast to a peer-to-peer network</li>
-        <li>The network validates the transaction using agreed-upon algorithms</li>
-        <li>Once verified, the transaction is combined with others to form a block</li>
-        <li>The new block is added to the existing blockchain (immutable and transparent)</li>
-        <li>The transaction is complete</li>
-    </ol>
-
-    <h2>Applications of Blockchain</h2>
-
-    <h3>Cryptocurrencies</h3>
-    <ul>
-        <li>Bitcoin, Ethereum, and thousands of other digital currencies</li>
-        <li>Enables peer-to-peer financial transactions without intermediaries</li>
-    </ul>
-
-    <h3>Smart Contracts</h3>
-    <ul>
-        <li>Self-executing contracts with terms written in code</li>
-        <li>Automatically execute when predefined conditions are met</li>
-        <li>Eliminate the need for intermediaries</li>
-    </ul>
-
-    <h3>Supply Chain Management</h3>
-    <ul>
-        <li>Track products from origin to consumer</li>
-        <li>Verify authenticity and reduce counterfeiting</li>
-        <li>Improve transparency and efficiency</li>
-    </ul>
-
-    <h3>Healthcare</h3>
-    <ul>
-        <li>Secure patient data sharing</li>
-        <li>Medical record management</li>
-        <li>Drug traceability and authenticity</li>
-    </ul>
-
-    <h2>Advantages of Blockchain</h2>
-    <ul>
-        <li><strong>Decentralization</strong>: No single point of control or failure</li>
-        <li><strong>Transparency</strong>: All transactions are visible to network participants</li>
-        <li><strong>Immutability</strong>: Once recorded, data cannot be altered</li>
-        <li><strong>Security</strong>: Cryptography ensures data integrity</li>
-        <li><strong>Efficiency</strong>: Reduces the need for intermediaries</li>
-    </ul>
-
-    <h2>Challenges and Limitations</h2>
-    <ul>
-        <li><strong>Scalability</strong>: Limited transaction processing capacity</li>
-        <li><strong>Energy Consumption</strong>: PoW consensus mechanism requires significant energy</li>
-        <li><strong>Regulatory Uncertainty</strong>: Evolving legal frameworks across jurisdictions</li>
-        <li><strong>Interoperability</strong>: Challenges in communication between different blockchain networks</li>
-    </ul>
-
-    <div class="quiz-section">
-        <h2>Interactive Quiz</h2>
-        <p>Test your knowledge of blockchain technology by answering the following questions:</p>
-
-        <div class="quiz-question">
-            <p>1. What is one of the key advantages of blockchain listed in the document?</p>
-            <input type="text" id="q1" placeholder="Your answer here...">
-            <button onclick="checkAnswer('q1', ['decentralization', 'transparency', 'immutability', 'security', 'efficiency'])">Check</button>
-            <div id="q1-result" class="feedback"></div>
+    <header>
+        <div class="blockchain-icon">
+            <i class="fas fa-link"></i>
         </div>
+        <h1>Introduction to Blockchain Technology</h1>
+        <p>Discover the revolutionary technology that's transforming industries and reshaping the digital landscape</p>
+    </header>
 
-        <div class="quiz-question">
-            <p>2. Which consensus mechanism involves miners solving complex mathematical puzzles?</p>
-            <input type="text" id="q2" placeholder="Your answer here...">
-            <button onclick="checkAnswer('q2', ['proof of work', 'pow'])">Check</button>
-            <div id="q2-result" class="feedback"></div>
-        </div>
+    <div class="container">
+        <div class="main-content">
+            <section>
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>What is Blockchain?</h2>
+                </div>
+                <p>Blockchain is a distributed ledger technology that enables secure, transparent, and tamper-proof record-keeping without requiring a central authority. It stores data in "blocks" that are linked together in a chain, creating an immutable history of transactions.</p>
+            </section>
 
-        <div class="quiz-question">
-            <p>3. According to the document, what do blocks in a blockchain contain?</p>
-            <input type="text" id="q3" placeholder="Your answer here...">
-            <button onclick="checkAnswer('q3', ['transactions', 'list of transactions', 'timestamp', 'hash', 'reference to previous block'])">Check</button>
-            <div id="q3-result" class="feedback"></div>
-        </div>
+            <section>
+                <div class="section-title">
+                    <i class="fas fa-cubes"></i>
+                    <h2>Key Components of Blockchain</h2>
+                </div>
+                
+                <div class="card-container">
+                    <div class="feature-box">
+                        <h3><i class="fas fa-cube"></i>Blocks</h3>
+                        <ul>
+                            <li><strong>Transaction Data:</strong> Contains a list of transactions</li>
+                            <li><strong>Timestamp:</strong> Records when the block was created</li>
+                            <li><strong>Previous Hash:</strong> Contains a reference to the previous block</li>
+                            <li><strong>Unique Hash:</strong> Has its own cryptographic signature</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <h3><i class="fas fa-network-wired"></i>Distributed Network</h3>
+                        <ul>
+                            <li><strong>Decentralized Copies:</strong> Multiple copies exist across a network of computers (nodes)</li>
+                            <li><strong>Synchronized Data:</strong> Each node has the same copy of the blockchain</li>
+                            <li><strong>Resilient Architecture:</strong> No central point of failure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <h3><i class="fas fa-check-circle"></i>Consensus Mechanisms</h3>
+                        <ul>
+                            <li><strong>Proof of Work (PoW):</strong> Miners solve complex mathematical puzzles</li>
+                            <li><strong>Proof of Stake (PoS):</strong> Validators are selected based on their cryptocurrency holdings</li>
+                            <li><strong>Delegated Proof of Stake (DPoS):</strong> Token holders vote for a small number of delegates</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        <div class="quiz-question">
-            <p>4. What blockchain application is described as "Self-executing contracts with terms written in code"?</p>
-            <input type="text" id="q4" placeholder="Your answer here...">
-            <button onclick="checkAnswer('q4', ['smart contracts', 'smart contract'])">Check</button>
-            <div id="q4-result" class="feedback"></div>
-        </div>
+            <section>
+                <div class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    <h2>How Blockchain Works</h2>
+                </div>
+                <ol class="process-steps">
+                    <li>A transaction is requested</li>
+                    <li>The transaction is broadcast to a peer-to-peer network</li>
+                    <li>The network validates the transaction using agreed-upon algorithms</li>
+                    <li>Once verified, the transaction is combined with others to form a block</li>
+                    <li>The new block is added to the existing blockchain (immutable and transparent)</li>
+                    <li>The transaction is complete</li>
+                </ol>
+            </section>
 
-        <div class="quiz-question">
-            <p>5. According to the document, what does "Immutability" mean in the context of blockchain?</p>
-            <input type="text" id="q5" placeholder="Your answer here...">
-            <button onclick="checkAnswer('q5', ['once recorded data cannot be altered', 'data cannot be altered', 'cannot be altered'])">Check</button>
-            <div id="q5-result" class="feedback"></div>
+            <section>
+                <div class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    <h2>Applications of Blockchain</h2>
+                </div>
+                
+                <div class="card-container">
+                    <div class="feature-box">
+                        <h3><i class="fas fa-coins"></i>Cryptocurrencies</h3>
+                        <ul>
+                            <li>Bitcoin, Ethereum, and thousands of other digital currencies</li>
+                            <li>Enables peer-to-peer financial transactions without intermediaries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <h3><i class="fas fa-file-contract"></i>Smart Contracts</h3>
+                        <ul>
+                            <li>Self-executing contracts with terms written in code</li>
+                            <li>Automatically execute when predefined conditions are met</li>
+                            <li>Eliminate the need for intermediaries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <h3><i class="fas fa-truck"></i>Supply Chain</h3>
+                        <ul>
+                            <li>Track products from origin to consumer</li>
+                            <li>Verify authenticity and reduce counterfeiting</li>
+                            <li>Improve transparency and efficiency</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <h3><i class="fas fa-heartbeat"></i>Healthcare</h3>
+                        <ul>
+                            <li>Secure patient data sharing</li>
+                            <li>Medical record management</li>
+                            <li>Drug traceability and authenticity</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title">
+                    <i class="fas fa-thumbs-up"></i>
+                    <h2>Advantages of Blockchain</h2>
+                </div>
+                
+                <div class="card-container">
+                    <div class="advantage-card">
+                        <h4><i class="fas fa-server"></i>Decentralization</h4>
+                        <p>No single point of control or failure</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h4><i class="fas fa-eye"></i>Transparency</h4>
+                        <p>All transactions are visible to network participants</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h4><i class="fas fa-lock"></i>Immutability</h4>
+                        <p>Once recorded, data cannot be altered</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h4><i class="fas fa-shield-alt"></i>Security</h4>
+                        <p>Cryptography ensures data integrity</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h4><i class="fas fa-bolt"></i>Efficiency</h4>
+                        <p>Reduces the need for intermediaries</p>
+                    </div>
+                </div>
+
+                <div class="challenges">
+                    <h3><i class="fas fa-exclamation-triangle"></i>Challenges and Limitations</h3>
+                    <ul>
+                        <li><strong>Scalability:</strong> Limited transaction processing capacity</li>
+                        <li><strong>Energy Consumption:</strong> PoW consensus mechanism requires significant energy</li>
+                        <li><strong>Regulatory Uncertainty:</strong> Evolving legal frameworks across jurisdictions</li>
+                        <li><strong>Interoperability:</strong> Challenges in communication between different blockchain networks</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="quiz-section">
+                <div class="quiz-heading">
+                    <h2><i class="fas fa-question-circle"></i>Test Your Knowledge</h2>
+                </div>
+                
+                <p>Answer these questions about blockchain technology based on what you've learned:</p>
+
+                <div class="quiz-question">
+                    <p><span class="question-number">1</span> What is one of the key advantages of blockchain listed in the document?</p>
+                    <input type="text" id="q1" placeholder="Enter your answer here...">
+                    <button onclick="checkAnswer('q1', ['decentralization', 'transparency', 'immutability', 'security', 'efficiency'])"><i class="fas fa-check"></i>Check Answer</button>
+                    <div id="q1-result" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p><span class="question-number">2</span> Which consensus mechanism involves miners solving complex mathematical puzzles?</p>
+                    <input type="text" id="q2" placeholder="Enter your answer here...">
+                    <button onclick="checkAnswer('q2', ['proof of work', 'pow'])"><i class="fas fa-check"></i>Check Answer</button>
+                    <div id="q2-result" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p><span class="question-number">3</span> According to the document, what do blocks in a blockchain contain?</p>
+                    <input type="text" id="q3" placeholder="Enter your answer here...">
+                    <button onclick="checkAnswer('q3', ['transactions', 'list of transactions', 'timestamp', 'hash', 'reference to previous block'])"><i class="fas fa-check"></i>Check Answer</button>
+                    <div id="q3-result" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p><span class="question-number">4</span> What blockchain application is described as "Self-executing contracts with terms written in code"?</p>
+                    <input type="text" id="q4" placeholder="Enter your answer here...">
+                    <button onclick="checkAnswer('q4', ['smart contracts', 'smart contract'])"><i class="fas fa-check"></i>Check Answer</button>
+                    <div id="q4-result" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p><span class="question-number">5</span> According to the document, what does "Immutability" mean in the context of blockchain?</p>
+                    <input type="text" id="q5" placeholder="Enter your answer here...">
+                    <button onclick="checkAnswer('q5', ['once recorded data cannot be altered', 'data cannot be altered', 'cannot be altered'])"><i class="fas fa-check"></i>Check Answer</button>
+                    <div id="q5-result" class="feedback"></div>
+                </div>
+            </section>
         </div>
+        
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2023 Blockchain Introduction | Created for educational purposes</p>
+        </footer>
     </div>
 
     <script>
@@ -195,11 +752,13 @@
                 }
             }
             
+            resultDiv.style.display = 'block';
+            
             if (isCorrect) {
-                resultDiv.innerHTML = "✓ Correct!";
+                resultDiv.innerHTML = '<i class="fas fa-check-circle"></i> Correct! Well done!';
                 resultDiv.className = "feedback correct";
             } else {
-                resultDiv.innerHTML = "✗ Incorrect. Try again.";
+                resultDiv.innerHTML = '<i class="fas fa-times-circle"></i> Incorrect. Try again.';
                 resultDiv.className = "feedback incorrect";
             }
         }

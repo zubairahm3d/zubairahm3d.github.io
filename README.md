@@ -6,7 +6,7 @@ This repository contains an introduction to blockchain technology with an intera
 
 The interactive quiz is available online at:
 
-**[Take the Blockchain Quiz](https://zubairahm3d.github.io/blockchain-content/blockchain_intro.html)**
+**[Take the Blockchain Quiz](https://zubairahm3d.github.io/blockchain_intro.html)**
 
 Just click the link above to access the quiz without downloading anything. You can test your knowledge of blockchain concepts and get immediate feedback on your answers.
 
